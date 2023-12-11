@@ -40,6 +40,7 @@ blackdict = {
     ",": "",
     ";": "-",
     "  ": " ",
+    "\n": ""
 }
 
 def wash(chain: str):
@@ -57,21 +58,26 @@ def wash(chain: str):
 
 
     chain = chain.split('.')
-    chain = chain[0: len(chain) - 1]
+    if len(chain) != 1:
+        chain = chain[0: len(chain) - 1]
 
-    retemp = ""
+        retemp = ""
 
-    for temp in chain:
-        retemp += temp
-        retemp += "-"
+        for temp in chain:
+            retemp += temp
+            retemp += "-"
+        
+        retemp = retemp[0: len(retemp) - 1]
+
+        chain = "".join(retemp)
     
-    retemp = retemp[0: len(retemp) - 1]
-
-    chain = "".join(retemp)
+    else:
+        chain = "".join(chain)
     
     if chain[0] == " ":
         chain = chain[1:]
 
-    return chain
+    if chain[len(chain) - 1] == " ":
+        chain = chain[:len(chain) - 1]
 
-print(wash("    sal  ùù ut.dd.d"))
+    return chain
