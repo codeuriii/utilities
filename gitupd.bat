@@ -1,3 +1,3 @@
 git add *
-git commit -m "Add or update file via git"
+git commit -m %1
 git push
